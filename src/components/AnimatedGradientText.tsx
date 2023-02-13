@@ -2,7 +2,7 @@
 
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 
 interface AnimatedGradientTextProps {
   content: undefined | number;
@@ -10,6 +10,7 @@ interface AnimatedGradientTextProps {
   endColor: string;
   index?: number;
   type: string;
+  delimit?: boolean;
 }
 
 const AnimatedGradientText: React.FC<AnimatedGradientTextProps> = ({
@@ -18,8 +19,9 @@ const AnimatedGradientText: React.FC<AnimatedGradientTextProps> = ({
   endColor,
   type,
   index,
+  delimit,
 }) => {
-  const [newContent] = useState(content);
+  const newContent = `${content} ${type} ${delimit ? ':' : ''}`;
   const styles = {
     '--content': newContent,
     '--start-color': startColor,
@@ -28,13 +30,13 @@ const AnimatedGradientText: React.FC<AnimatedGradientTextProps> = ({
   return (
     <span
       className={`animated-gradient-text_background animated-gradient-text_background-${index}  `}
-      data-content={`${content} ${type}`}
+      data-content={newContent}
       style={styles}
     >
       <span
-        className={`animated-gradient-text_foreground animated-gradient-text_foreground-${index}`}
+        className={`animated-gradient-text_foreground animated-gradient-text_foreground-${index} p-2`}
       >
-        {`${content} ${type}`}
+        {newContent}
       </span>
     </span>
   );

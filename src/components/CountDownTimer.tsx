@@ -1,3 +1,4 @@
+/* eslint-disable tailwindcss/no-custom-classname */
 import React from 'react';
 
 import { useCountdown } from '@/lib/useCountdown';
@@ -8,7 +9,7 @@ type ShowCounterProps = {
   days: number | undefined;
   hours: number | undefined;
   minutes: number | undefined;
-  seconds: number | undefined;
+  seconds?: number | undefined;
 };
 
 type CountdownTimerProps = {
@@ -24,7 +25,7 @@ const ExpiredNotice = () => {
   );
 };
 
-const ShowCounter = ({ days, hours, minutes, seconds }: ShowCounterProps) => {
+const ShowCounter = ({ days, hours, minutes }: ShowCounterProps) => {
   return (
     <h1 className="show-counter">
       <AnimatedGradientText
@@ -34,26 +35,21 @@ const ShowCounter = ({ days, hours, minutes, seconds }: ShowCounterProps) => {
         startColor={'#00ca12'}
         endColor={'#f0ce12'}
       />
+
       <AnimatedGradientText
         content={hours}
         type={hours && hours > 1 ? 'Hours' : 'Hour'}
         index={2}
-        startColor={'#00ca12'}
-        endColor={'#f0ce12'}
+        startColor={'var(--yellow)'}
+        endColor={'var(--red)'}
       />
+
       <AnimatedGradientText
         content={minutes}
         type={minutes && minutes > 1 ? 'Minutes' : 'Minutes'}
-        startColor={'#00ca12'}
+        startColor={'var(--blue)'}
         index={3}
-        endColor={'#f0ce12'}
-      />
-      <AnimatedGradientText
-        content={seconds}
-        index={4}
-        type={seconds && seconds > 1 ? 'Seconds' : 'Second'}
-        startColor={'#00ca12'}
-        endColor={'#f0ce12'}
+        endColor={'var(--pink)'}
       />
     </h1>
   );
@@ -71,12 +67,5 @@ export const CountdownTimer = ({ targetDate }: CountdownTimerProps) => {
   ) {
     return <ExpiredNotice />;
   }
-  return (
-    <ShowCounter
-      days={days}
-      hours={hours}
-      minutes={minutes}
-      seconds={seconds}
-    />
-  );
+  return <ShowCounter days={days} hours={hours} minutes={minutes} />;
 };

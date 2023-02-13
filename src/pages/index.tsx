@@ -1,18 +1,63 @@
+import { useEffect, useState } from 'react';
+
 import CountdownContainer from '@/components/CountdownContainer';
+import Predict from '@/components/Predict';
+import { presidentialCandidates } from '@/data/candidates';
+import mapData from '@/data/state.json';
 import { Meta } from '@/layouts/Meta';
+import type { Candidate } from '@/lib/types';
 import { Main } from '@/templates/Main';
 
-const Index = () => {
+export const getStaticProps = async () => {
+  const filterCandidates = (
+    candidates: Candidate[],
+    keys: (keyof Candidate)[],
+    values: (string | number | null)[][]
+  ) => {
+    return candidates.filter((candidate) =>
+      keys.every((key, index) => {
+        const value = candidate[key];
+        if (value === undefined) return false;
+        return values[index]!.includes(value);
+      })
+    );
+  };
+  const key: (keyof Candidate)[] = ['party', 'position'];
+  const values = [['PDP', 'APC', 'NNPP', 'LP'], ['Presidential']];
+  const candidateData = filterCandidates(presidentialCandidates, key, values);
+
+  return {
+    props: {
+      candidates: candidateData,
+    },
+  };
+};
+
+const Index = ({ candidates }: { candidates: Candidate[] }) => {
+  const [data, setData] = useState<any>(null);
+
+  useEffect(() => {
+    setData(mapData);
+  }, []);
+
   return (
     <Main
       meta={
         <Meta
-          title="Next.js Boilerplate Presentation"
-          description="Next js Boilerplate is the perfect starter code for your project. Build your React application with the Next.js framework."
+          title="Election Prediction"
+          description="Predict the winner of each state"
         />
       }
     >
-      <CountdownContainer />
+      <div className="w-full bg-red-600">
+        <CountdownContainer />
+        {data ? (
+          <Predict candidates={candidates} data={data} />
+        ) : (
+          <p>...loading</p>
+        )}{' '}
+        <div className="bg-blue-400">hrhrh</div>
+      </div>
     </Main>
   );
 };
