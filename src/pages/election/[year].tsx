@@ -1,33 +1,31 @@
-import type {
-  GetStaticPaths,
-  GetStaticProps,
-  InferGetStaticPropsType,
-} from 'next';
+import type { GetStaticPaths, InferGetStaticPropsType } from 'next';
 
 import { Meta } from '@/layouts/Meta';
 import { Main } from '@/templates/Main';
 
 type IYearUrl = {
-  slug: string;
+  year: string;
 };
 
 export const getStaticPaths: GetStaticPaths<IYearUrl> = async () => {
   return {
     paths: ['1999', '2003', '2007', '2011', '2015', '2019', '2023'].map(
       (elem) => ({
-        params: { slug: `${elem}` },
+        params: { year: `${elem}` },
       })
     ),
     fallback: false,
   };
 };
 
-export const getStaticProps: GetStaticProps<IYearUrl, IYearUrl> = async ({
+export const getStaticProps = async ({
   params,
+}: {
+  params: { year: string };
 }) => {
   return {
     props: {
-      slug: params!.slug,
+      slug: params!.year,
     },
   };
 };
