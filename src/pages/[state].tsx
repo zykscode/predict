@@ -24,7 +24,9 @@ export default function StatePage({ state }: StateProps) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = states.map((state) => ({ params: { state } }));
+  const paths = states.map((state) => ({
+    params: { state: state.toLowerCase() },
+  }));
 
   return { paths, fallback: false };
 };
@@ -32,7 +34,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps<StateProps> = async ({
   params,
 }) => {
-  const state = params?.state as string; // Add type assertion
+  const state = (params?.state as string).toLowerCase(); // Add type assertion
 
   return { props: { state } };
 };
