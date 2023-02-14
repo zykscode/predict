@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import CountdownContainer from '@/components/CountdownContainer';
+import Demography from '@/components/Demography/Demography';
 import Predict from '@/components/Predict';
 import { presidentialCandidates } from '@/data/candidates';
 import mapData from '@/data/state.json';
@@ -56,7 +57,7 @@ const Index = ({ candidates }: { candidates: Candidate[] }) => {
         ) : (
           <p>...loading</p>
         )}{' '}
-        <div className="bg-blue-400">hrhrh</div>
+        <Demography />
       </div>
     </Main>
   );

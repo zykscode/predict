@@ -38,3 +38,11 @@ export const states = [
   'Yobe',
   'Zamfara',
 ];
+export const tabsNav = [
+  { label: '2019', href: '/2019' },
+  { label: '2015', href: '/2015' },
+  { label: '2011', href: '/2011' },
+  { label: '2007', href: '/2007' },
+  { label: '2003', href: '/2003' },
+  { label: '1999', href: '/1999' },
+];
