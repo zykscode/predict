@@ -99,3 +99,27 @@ export const makeup = {
     },
   },
 };
+
+export const demograph = {
+  gender: {
+    male: 49054162,
+    female: 44414846,
+  },
+  occupation: {
+    artisan: 4967464,
+    farming: 14742554,
+    publicServant: 2376223,
+    student: 26027481,
+    houseWife: 13006939,
+    businessman: 12457997,
+    others: 6608143,
+    trading: 7998658,
+    civilServant: 5283549,
+  },
+  age: {
+    youth: 37060339,
+    middleAge: 33413591,
+    elderly: 17700270,
+    old: 5294748,
+  },
+};

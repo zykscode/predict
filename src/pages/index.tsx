@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 import CountdownContainer from '@/components/CountdownContainer';
 import Demography from '@/components/Demography/Demography';
+import MapContainer from '@/components/MapContainer';
 import Predict from '@/components/Predict';
 import { presidentialCandidates } from '@/data/candidates';
 import mapData from '@/data/state.json';
@@ -50,14 +51,18 @@ const Index = ({ candidates }: { candidates: Candidate[] }) => {
         />
       }
     >
-      <div className="w-full bg-red-600">
+      <div className="w-full">
         <CountdownContainer />
-        {data ? (
-          <Predict candidates={candidates} data={data} />
-        ) : (
-          <p>...loading</p>
-        )}{' '}
-        <Demography />
+        <MapContainer>
+          <div className="flex min-h-screen flex-col-reverse justify-center lg:flex-row">
+            {data ? (
+              <Predict candidates={candidates} data={data} />
+            ) : (
+              <p>...loading</p>
+            )}{' '}
+            <Demography />
+          </div>
+        </MapContainer>
       </div>
     </Main>
   );
