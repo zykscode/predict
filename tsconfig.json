@@ -47,6 +47,7 @@
     "**/*.ts",
     "**/*.tsx",
     "src/components/Parliament.ts",
-    "src/components/SeatChart.jsx"
+    "src/components/SeatChart.jsx",
+    "src/data/new.js"
   ]
 }

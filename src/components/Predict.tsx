@@ -33,7 +33,7 @@ export default function Predict({ data, candidates }: Props) {
   };
 
   return (
-    <div className="flex flex-col-reverse lg:flex-row">
+    <div className="flex min-h-screen flex-col-reverse justify-center lg:flex-row">
       <div className="container relative lg:h-[800px] lg:w-[800px]">
         <Map data={data} />
         <Options candidates={candidates} />
